@@ -11,6 +11,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.carter.edtechassignment",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE"
       },
@@ -34,7 +35,8 @@
         }
       ],
       "expo-video",
-      "expo-audio"
+      "expo-audio",
+      "expo-asset"
     ],
     "experiments": {
       "typedRoutes": true,
