@@ -8,13 +8,27 @@ export function useNotifications() {
   const router = useRouter();
 
   useEffect(() => {
-    if (Platform.OS === "android") {
-      Notifications.setNotificationChannelAsync("default", {
-        name: "default",
-        importance: Notifications.AndroidImportance.HIGH,
-      });
-    }
+    const setupNotifications = async () => {
+      // 🔔 Ask permission
+      const { status } = await Notifications.requestPermissionsAsync();
 
+      if (status !== "granted") {
+        console.warn("Notification permission not granted");
+        return;
+      }
+
+      // 🤖 Android channel (MANDATORY)
+      if (Platform.OS === "android") {
+        await Notifications.setNotificationChannelAsync("default", {
+          name: "default",
+          importance: Notifications.AndroidImportance.HIGH,
+        });
+      }
+    };
+
+    setupNotifications();
+
+    // 👉 Handle notification tap
     const subscription = Notifications.addNotificationResponseReceivedListener(
       (response) => {
         const route = response.notification.request.content.data?.route;

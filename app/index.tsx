@@ -20,6 +20,7 @@ export default function WebViewScreen() {
   return (
     <View style={styles.container}>
       <AppHeader title={STRINGS.WEBVIEW.HEADER_TITLE} />
+
       <WebView
         source={{ uri: "https://expo.dev" }}
         style={styles.webview}
@@ -30,9 +31,10 @@ export default function WebViewScreen() {
           )
         }
       />
+
       <View style={styles.buttons}>
         {buttons.map(({ key, label, onPress }) => (
-          <Button key={key} onPress={onPress}>
+          <Button key={key} mode="contained" onPress={onPress}>
             {label}
           </Button>
         ))}
@@ -44,5 +46,8 @@ export default function WebViewScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   webview: { flex: 1 },
-  buttons: { padding: 16, gap: 10 },
+  buttons: {
+    padding: 16,
+    gap: 10,
+  },
 });

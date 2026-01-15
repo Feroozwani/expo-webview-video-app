@@ -13,12 +13,21 @@ export type WebViewButtonItem = {
   onPress: () => void;
 };
 
+// 🔔 Notification helper
 export const notify = (title: string, body: string, data?: any) =>
   Notifications.scheduleNotificationAsync({
-    content: { title, body, data },
-    trigger: { seconds: 2, channelId: "default" },
+    content: {
+      title,
+      body,
+      data,
+    },
+    trigger: {
+      seconds: 2,
+      channelId: "default",
+    },
   });
 
+// 🎛 Buttons
 export const getWebViewButtons = ({ router }: Params): WebViewButtonItem[] => [
   {
     key: "notify",
